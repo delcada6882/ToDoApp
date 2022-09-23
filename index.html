@@ -25,17 +25,33 @@
     </div>
     <div id="bottom">
         <div id="left">
-            <input type="text" name="inputForTask" id="inputForButton" placeholder="Enter List Name...">
+            <input type="text" name="inputForTask" id="inputForButton" placeholder="Enter List Name..." onchange="addNewList(), justForShow()">
+            <div id="listNames">
+                <h2>Shopping</h2>
+                <h2>Here1</h2>
+                <h2>Here2</h2>
+            </div>
         </div>
         <div id="right">
-            <input type="text" name="inputForTask" id="inputForButton">
-            <input type="button" value="Submit" id="buttonForID" onclick="addToList()">
+            <div class="title">
+                <h1>Here</h1>
+            </div>
             <div id="listDisplay">
-                <div id="list">
-
+                <div id="toDoList">
+                    <div class="todo 1">
+                        <div class="contain">
+                            <input type="checkbox" name="completeBox" id="completeBox">
+                            <p>Go buy bananas</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                          </svg>
+                    </div>
                 </div>
         </div>
 
+        <div class="stickyButton">
+            <h1>+</h1>
         </div>
     </div>
 </body>

@@ -43,19 +43,108 @@ body {
 }
 
 #left {
-  background-color: white;
+  background-color: #EFF3FB;
   height: 100%;
   width: 15%;
+  display: flex;
+  flex-flow: column;
 }
 #left input[type=text] {
   font-size: 20px;
-  width: 100%;
+  padding-left: 10px;
+  width: 94.5%;
   height: 5%;
+}
+#left h2 {
+  margin: 5px 0;
+  font-size: 18px;
+  padding: 10px;
+  transition: 0.2s;
+}
+#left h2:hover {
+  padding: 10px 20px;
+  background-color: #0E1C36;
+  color: white;
+  font-size: 22px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 #right {
-  background-color: #AFCBFF;
+  background-color: white;
   width: 85%;
+}
+
+.title {
+  border-bottom: 1px solid #EFF3FB;
+  margin: 0 20px;
+}
+
+.todo {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border: 2px solid #AFCBFF;
+  border-radius: 20px;
+  background-color: #EFF3FB;
+  max-width: 90%;
+  justify-content: space-between;
+}
+.todo input[type=checkbox] {
+  transform: scale(1.2);
+  margin-right: 20px;
+  transition: 0.2s;
+}
+.todo .contain {
+  display: flex;
+}
+.todo input[type=checkbox]:hover {
+  transform: scale(1.4);
+  transition: 0.2s;
+  cursor: pointer;
+}
+.todo p {
+  margin: 0;
+}
+.todo svg {
+  transform: scale(1);
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid #AFCBFF;
+  transition: 0.2s;
+}
+.todo svg:hover {
+  color: white;
+  transition: 0.2s;
+  transform: scale(1.2);
+  cursor: pointer;
+  background-color: #F45D52;
+}
+
+.stickyButton {
+  font-size: 20px;
+  position: sticky;
+  top: 750px;
+  left: 1550px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 5%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: 0.2s;
+  transform: scale(0.9);
+}
+
+.stickyButton:hover {
+  transition: 0.2s;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  cursor: pointer;
+  background-color: #AFCBFF;
+  transform: scale(1);
 }
 
 /*# sourceMappingURL=style.css.map */

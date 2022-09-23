@@ -14,21 +14,35 @@
 // let myCar = new Car('nissan', 'GT-R', 2015, v6Turbo);
 
 // console.log(myCar);
+
+const lists = {
+    1: {
+      name: "Shopping list",
+      todos: [
+        {
+          text: 'bananas',
+          completed: false
+        },
+        {
+          text: '1 lbs ground turkey',
+          completed: false
+        }
+      ]
+    },
+   }
+const currentList = lists[0];
+   
+
 const inputForButton = document.getElementById('inputForButton')
+const listNames = document.getElementById('listNames')
 let list = []
 
-function addToList() {
-    let inpVal = inputForButton.value
-    list.push(inpVal);
-
-    displayList();
+function addNewList() {
+    let newListHTML = inputForButton.value;
+    listNames.innerHTML += `<h2>${newListHTML}</h2>`;
+    inputForButton.value = "";
 }
 
-function displayList() {
-    const lisDis = document.getElementById('list')
-    lisDis.innerHTML = ""
-    console.log(list)
-    for (const i of list) {
-        lisDis.innerHTML += `<li>${i}</li>`
-    }
+function justForShow() {
+    console.log("EHY")
 }
