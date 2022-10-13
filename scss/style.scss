@@ -5,6 +5,7 @@ $dark-blue: #0E1C36;
 $light-blue: #AFCBFF;
 $light-grey: #EFF3FB;
 $off-red: #F45D52;
+$off-yellow: #EFD6AC;
 
 * {
     font-family: 'Lato';
@@ -76,14 +77,39 @@ body {
         transition: $trans-time;
         cursor: pointer;
     }
+    .active {
+        padding: 10px 20px;
+        background-color: #0E1C36;
+        color: white;
+        font-size: 22px;
+        transition: $trans-time;
+    }
 }
 #right {
     background-color: white;
     width: 85%;
 }
-.title {
+#title {
     border-bottom: 1px solid $light-grey;
     margin: 0 20px;
+    margin-bottom: 25px;
+}
+.newInput {
+    input[type="text"] {
+        display: flex;
+        margin-top: 15px;
+        margin-left: 20px;
+        padding: 20px;
+        font-size: 20px;
+        border: 2px solid $light-blue;
+        border-radius: 20px;
+        background-color: $light-grey;
+        max-width: 90%;
+        // width: 87.5%;
+        width: 100%;
+        justify-content: space-between;
+        // padding-left: 60px;
+    }
 }
 .todo {
     display: flex;
@@ -96,14 +122,21 @@ body {
     background-color: $light-grey;
     max-width: 90%;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     input[type="checkbox"] {
-        transform: scale(1.2);
+        transform: scale(1.5);
         margin-right: 20px;
+        height: 15px;
+        width: 15px;
         transition: $trans-time;
 
     }
     .contain {
         display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        max-width: 90%;
     }
     input[type="checkbox"]:hover {
         transform: scale(1.4);
@@ -112,6 +145,8 @@ body {
     }
     p {
         margin: 0;
+        max-width: 96%;
+        overflow: hidden;
     }
     svg {
         transform: scale(1);
@@ -120,18 +155,28 @@ body {
         border: 1px solid $light-blue;
         transition: $trans-time;
     }
-    svg:hover {
+    .trash {
+        margin-left: 10px;
+    }
+    .pencil:hover {
         color: white;
         transition: $trans-time;
         transform: scale(1.2);
         cursor: pointer;
-        background-color: #F45D52;
+        background-color: $off-yellow;
+    }
+    .trash:hover {
+        color: white;
+        transition: $trans-time;
+        transform: scale(1.2);
+        cursor: pointer;
+        background-color: $off-red;
     }
 }
 .stickyButton {
     font-size: 20px;
     position: sticky;
-    top: 750px;
+    top: 7500px;
     left: 1550px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     width: 5%;
@@ -145,8 +190,7 @@ body {
 }
 .stickyButton:hover {
     transition: $trans-time;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    cursor: pointer;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;    
     background-color: #AFCBFF;
     transform: scale(1);
 }

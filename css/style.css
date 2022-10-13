@@ -69,15 +69,37 @@ body {
   transition: 0.2s;
   cursor: pointer;
 }
+#left .active {
+  padding: 10px 20px;
+  background-color: #0E1C36;
+  color: white;
+  font-size: 22px;
+  transition: 0.2s;
+}
 
 #right {
   background-color: white;
   width: 85%;
 }
 
-.title {
+#title {
   border-bottom: 1px solid #EFF3FB;
   margin: 0 20px;
+  margin-bottom: 25px;
+}
+
+.newInput input[type=text] {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border: 2px solid #AFCBFF;
+  border-radius: 20px;
+  background-color: #EFF3FB;
+  max-width: 90%;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .todo {
@@ -91,14 +113,21 @@ body {
   background-color: #EFF3FB;
   max-width: 90%;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .todo input[type=checkbox] {
-  transform: scale(1.2);
+  transform: scale(1.5);
   margin-right: 20px;
+  height: 15px;
+  width: 15px;
   transition: 0.2s;
 }
 .todo .contain {
   display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  max-width: 90%;
 }
 .todo input[type=checkbox]:hover {
   transform: scale(1.4);
@@ -107,6 +136,8 @@ body {
 }
 .todo p {
   margin: 0;
+  max-width: 96%;
+  overflow: hidden;
 }
 .todo svg {
   transform: scale(1);
@@ -115,7 +146,17 @@ body {
   border: 1px solid #AFCBFF;
   transition: 0.2s;
 }
-.todo svg:hover {
+.todo .trash {
+  margin-left: 10px;
+}
+.todo .pencil:hover {
+  color: white;
+  transition: 0.2s;
+  transform: scale(1.2);
+  cursor: pointer;
+  background-color: #EFD6AC;
+}
+.todo .trash:hover {
   color: white;
   transition: 0.2s;
   transform: scale(1.2);
@@ -126,7 +167,7 @@ body {
 .stickyButton {
   font-size: 20px;
   position: sticky;
-  top: 750px;
+  top: 7500px;
   left: 1550px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 5%;
@@ -141,8 +182,7 @@ body {
 
 .stickyButton:hover {
   transition: 0.2s;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  cursor: pointer;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   background-color: #AFCBFF;
   transform: scale(1);
 }
