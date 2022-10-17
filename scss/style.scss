@@ -7,24 +7,26 @@ $light-grey: #EFF3FB;
 $off-red: #F45D52;
 $off-yellow: #EFD6AC;
 
+@mixin madding() {
+    padding: 0;
+    margin: 0;
+}
+
 * {
     font-family: 'Lato';
 }
 html {
     height: 91vh;
-    padding: 0;
-    margin: 0;
+    @include madding();
 }
 body {
-    margin: 0;
-    padding: 0;
+    @include madding();
     background-color: white;
     height: 100%;
 }
 #bottom {
     display: flex;
-    margin: 0;
-    padding: 0;
+    @include madding();
     height: 100%;
 }
 #header {

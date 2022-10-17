@@ -1,20 +1,3 @@
-// function Car(make, model, year, engine) {
-//     this.make = make;
-//     this.model = model;
-//     this.year = year;
-//     this.engine = engine;
-// }
-// function Engine(part1, part2, part3) {
-//     this.part1 = part1;
-//     this.part2 = part2;
-//     this.part3 = part3;
-// }
-
-// let v6Turbo = new Engine("Core", "Processing", "Unit");
-// let myCar = new Car('nissan', 'GT-R', 2015, v6Turbo);
-
-// console.log(myCar);
-
 let lists = {
     1: {
         name: "Example list",
@@ -39,8 +22,6 @@ window.onload = load();
 window.onload = render();
 
 function render() {
-    // alert("work")
-    // console.log(lists)
     nameOfList = creatingListNames()
     if(nameOfList != "") {
         listNames.innerHTML = nameOfList;
@@ -76,7 +57,6 @@ function render() {
             <p class="noList">Just type in the box that says "Enter List Name..."</p>
         </div>`
     }
-    console.log(lists)
     save();
 }
 
@@ -97,7 +77,6 @@ function creatingToDos() {
     runThrough();
 
     for (x in lists[select].todo) {
-    // console.log(lists[select].todo[x].completed)
         if (lists[select].todo[x].completed == false) {
             todoList += `
                 <div class="todo ${i}">
@@ -143,8 +122,6 @@ function creatingListNames() {
     let nameOfList = ""
     let newSelectVal = 1
     for (x in lists) {
-        // console.log(lists[x].name)
-        // console.log(select);
         if (newSelectVal == select) {
             nameOfList += `<h2 onclick="selectThis(this)" class="${newSelectVal} active">
             ${lists[x].name}
@@ -179,14 +156,10 @@ function createVar(item) {
         }]
     }
     lists[Object.keys(lists).length + 1] = newVar
-    // console.log(lists)
-    // console.log(select)
-
 }
 
 function deleteItem(item) {
     item.parentElement.parentElement.remove()
-    // console.log(Object.keys(list).length)
     const toDoItem = item.parentElement.parentElement.classList[1]
     lists[select].todo[toDoItem].text = ThisIsNum;
     save();
@@ -257,21 +230,14 @@ function addTodoInput() {
 function addTodo(item) {
     item.parentElement.remove();
     let newTodo = item.value;
-    // console.log(newTodo);
     const toDoList = document.getElementById('toDoList');
 
-    // console.log(select)
-    // console.log(lists)
     let tomp = {
         text:`${newTodo}`,
         completed: false
     }
-    lists[select].todo.push(tomp);
-    // console.log({text: `${newTodo}`})
-    // console.log(lists[select].todo)
 
-    // console.log(lists[select].todo)
-    // console.log(lists)
+    lists[select].todo.push(tomp);
 
     toDoList.innerHTML += ` 
     <div class="todo ${i}">
@@ -309,7 +275,6 @@ function checkComp(item) {
 }
 
 function selectThis(item) {
-    console.log(item.classList.item(0))
     select = item.classList.item(0)
     render()
 }
@@ -331,9 +296,6 @@ function clearCheck() {
 }
 
 function listDel() {
-    console.log("I'M DELETING YOUR TRASH!");
-    console.log(`The trash I'm deleting is ${select}`)
-    console.log(lists[select])
     select = Number(select)
     if (select !== Object.keys(lists).length) {
         for (let p = select; p < Object.keys(lists).length; p++) {
@@ -354,7 +316,6 @@ function listDel() {
     render()
 }
 function listEdit(item) {
-    console.log(item.parentElement.parentElement.children[0].tagName);
     if (item.parentElement.parentElement.children[0].tagName == "H1") {
         let oldItemName = item.parentElement.parentElement.children[0].innerHTML
         let replacement3 = document.createElement("div");
@@ -365,7 +326,6 @@ function listEdit(item) {
     }
 }
 function listNameChange(item) {
-    console.log(item.tagName);
     let newListName = item.value;
     let replacement2 = document.createElement("h1");
     replacement2.innerHTML = `${newListName}`
@@ -380,4 +340,3 @@ function save() {
 function load() {
     lists = JSON.parse(localStorage.getItem('lists'))
 }
-   
