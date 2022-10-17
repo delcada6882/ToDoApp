@@ -189,6 +189,7 @@ function deleteItem(item) {
     // console.log(Object.keys(list).length)
     const toDoItem = item.parentElement.parentElement.classList[1]
     lists[select].todo[toDoItem].text = ThisIsNum;
+    save();
 }
 
 function changeItem(item) {
@@ -199,6 +200,7 @@ function changeItem(item) {
         <input type="text" name="yes" id="addToDo" onchange="replaceTodo(this)" class="${currentTodoNum[1]}" value="${currentItem}">`
     replacement.classList.add('newInput');
     item.parentElement.parentElement.replaceWith(replacement);
+    save();
 }
 
 function replaceTodo(item) {
@@ -241,6 +243,7 @@ function replaceTodo(item) {
         </div>`
     }
     item.parentElement.replaceWith(replacement)
+    save()
 }
 
 function addTodoInput() {
