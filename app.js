@@ -32,47 +32,69 @@ const inputForButton = document.getElementById('inputForButton')
 const listNames = document.getElementById('listNames')
 let select = 1
 let currentList = lists[select];
+let listChange = false;
 
 const ThisIsNum = 27547683416 
+window.onload = load();
 window.onload = render();
 
 function render() {
-    console.log(Object.keys(lists).length)
-    
     // alert("work")
     // console.log(lists)
     nameOfList = creatingListNames()
-    listNames.innerHTML = nameOfList;
-    toDoList = creatingToDos();
-    const right = document.getElementById('right')
-    right.innerHTML = `
-        <div id="title" class="${select}">
-            <h1>${lists[select].name}</h1>
-        </div>
-        <div id="listDisplay">
-            <div id="toDoList">
-                ${toDoList}
+    if(nameOfList != "") {
+        listNames.innerHTML = nameOfList;
+        toDoList = creatingToDos();
+        const right = document.getElementById('right')
+        right.innerHTML = `
+            <div id="title" class="${select}">
+                <h1>${lists[select].name}</h1>
+                <div class="contain">
+                    <input type="button" value="Edit Name" onclick="listEdit(this)" id="listEdit">
+                    <input type="button" value="Delete List" onclick="listDel()" id="listDel">
+                    <input type="button" value="Clear checked boxes" onclick="clearCheck()" id="clear">
+                </div>
             </div>
-        </div>
-        
-        <div class="stickyButton">
-            <h1 onclick="addTodoInput()">+</h1>
-        </div>
-        `
+            <div id="listDisplay">
+                <div id="toDoList">
+                    ${toDoList}
+                </div>
+            </div>
+            
+            <div class="stickyButton" onclick="addTodoInput()">
+                <h1>+</h1>
+            </div>
+            `
+    }
+    else {
+        listNames.innerHTML = nameOfList;
+        const right = document.getElementById('right')
 
+        right.innerHTML = `
+        <div id="newRight">
+            <p class="noList">You need to add a new list and get started.</p>
+            <p class="noList">Just type in the box that says "Enter List Name..."</p>
+        </div>`
+    }
     console.log(lists)
+    save();
+}
+
+function runThrough() {
+    for (let j = 0; j < lists[select].todo.length; j++) {
+        for(y in lists[select].todo) {
+            if (lists[select].todo[y].text == ThisIsNum){
+                lists[select].todo.splice(y, 1);
+            }
+        }
+    }
 }
 
 function creatingToDos() {
     i = 0;
     let todoList = ""
-    console.log(`${select} THIS IS SELECT`)
-    for(y in lists[select].todo) {
-        if (lists[select].todo[y].text == ThisIsNum){
-            lists[select].todo.splice(y, 1);
-        }
-    }
 
+    runThrough();
 
     for (x in lists[select].todo) {
     // console.log(lists[select].todo[x].completed)
@@ -124,10 +146,14 @@ function creatingListNames() {
         // console.log(lists[x].name)
         // console.log(select);
         if (newSelectVal == select) {
-            nameOfList += `<h2 onclick="selectThis(this)" class="${newSelectVal} active">${lists[x].name}</h2>`;
+            nameOfList += `<h2 onclick="selectThis(this)" class="${newSelectVal} active">
+            ${lists[x].name}
+            </h2>`;
         }
         else {
-            nameOfList += `<h2 onclick="selectThis(this)" class="${newSelectVal}">${lists[x].name}</h2>`;
+            nameOfList += `<h2 onclick="selectThis(this)" class="${newSelectVal}">
+            ${lists[x].name}
+            </h2>`;
         }
 
         newSelectVal += 1
@@ -172,7 +198,6 @@ function changeItem(item) {
     replacement.innerHTML = `                    
         <input type="text" name="yes" id="addToDo" onchange="replaceTodo(this)" class="${currentTodoNum[1]}" value="${currentItem}">`
     replacement.classList.add('newInput');
-    console.log(`${currentTodoNum[1]} THIS IS THE NUMBER OF TODO THIS IS`)
     item.parentElement.parentElement.replaceWith(replacement);
 }
 
@@ -180,7 +205,6 @@ function replaceTodo(item) {
     let newTodo = item.value
     let replacement = document.createElement("div")
     const currentTodoNum = item.classList[0]
-    console.log(`${currentTodoNum} THIS IS THE NUMBER OF TODO THIS IS 2`)
     replacement.classList.add(`todo`)
     replacement.classList.add(currentTodoNum)
 
@@ -225,7 +249,6 @@ function addTodoInput() {
     <div class="newInput">
         <input type="text" name="yes" id="addToDo" onchange="addTodo(this)">
     </div>`
-
 }
 
 function addTodo(item) {
@@ -263,6 +286,7 @@ function addTodo(item) {
         </div>
     </div>`
     i++;
+    save()
 }
 
 function getList(item) {
@@ -271,7 +295,6 @@ function getList(item) {
 }
 
 function checkComp(item) {
-    console.log("Clicked");
     const toDoItem = item.parentElement.parentElement.classList[1]
     if (lists[select].todo[toDoItem].completed == true) {
         lists[select].todo[toDoItem].completed = false;
@@ -287,3 +310,71 @@ function selectThis(item) {
     select = item.classList.item(0)
     render()
 }
+
+function save() {
+    localStorage.setItem('currentList', JSON.stringify(currentList)); 
+    localStorage.setItem('lists', JSON.stringify(lists));
+   }
+   
+function clearCheck() {
+    for (x in lists[select].todo) {
+        if (lists[select].todo[x].completed == true) {
+            lists[select].todo[x].text = ThisIsNum
+        }
+    }
+
+    runThrough();
+    render();
+}
+
+function listDel() {
+    console.log("I'M DELETING YOUR TRASH!");
+    console.log(`The trash I'm deleting is ${select}`)
+    console.log(lists[select])
+    select = Number(select)
+    if (select !== Object.keys(lists).length) {
+        for (let p = select; p < Object.keys(lists).length; p++) {
+            lists[p] = lists[p+1]
+        }
+    }
+    else {
+        select = Object.keys(lists).length-1
+    }
+    delete lists[Object.keys(lists).length]
+    // if (Object.keys(lists).length > select) {
+    //     select = Number(select) + 1
+    // }
+    // else {
+    //     select = Number(select) - 1
+    // }
+    
+    render()
+}
+function listEdit(item) {
+    console.log(item.parentElement.parentElement.children[0].tagName);
+    if (item.parentElement.parentElement.children[0].tagName == "H1") {
+        let oldItemName = item.parentElement.parentElement.children[0].innerHTML
+        let replacement3 = document.createElement("div");
+        replacement3.innerHTML = `                    
+            <input type="text" name="yes" id="changeName" onchange="listNameChange(this)" placeholder="${oldItemName}">`
+        replacement3.classList.add('newInput');
+        item.parentElement.parentElement.children[0].replaceWith(replacement3);
+    }
+}
+function listNameChange(item) {
+    console.log(item.tagName);
+    let newListName = item.value;
+    let replacement2 = document.createElement("h1");
+    replacement2.innerHTML = `${newListName}`
+    item.replaceWith(replacement2)
+    lists[select].name = newListName;
+    render()
+}
+
+function save() {
+    localStorage.setItem('lists', JSON.stringify(lists));
+}
+function load() {
+    lists = JSON.parse(localStorage.getItem('lists'))
+}
+   
